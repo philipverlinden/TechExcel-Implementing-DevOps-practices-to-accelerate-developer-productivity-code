@@ -80,44 +80,6 @@ jobs:
           app-name: 'pvaag3qdo22zu-dev'
           images: pvaag3qdo22zumpnpreg.azurecr.io/techboost/dotnetcoreapp:${{github.run_number}}
 
-  deploy-to-test:
-  
-    runs-on: ubuntu-latest
-    needs: deploy-to-dev
-    environment:
-      name: test
-      url: https://pvaag3qdo22zu-test.azurewebsites.net/
-    
-    steps:
-    - uses: actions/checkout@v3
-    
-    - name: 'Login via Azure CLI'
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+ 
 
-    - uses: azure/webapps-deploy@v2
-      with:
-        app-name: 'pvaag3qdo22zu-test'
-        images: pvaag3qdo22zumpnpreg.azurecr.io/techboost/dotnetcoreapp:${{github.run_number}}
-
-  deploy-to-prod:
-  
-    runs-on: ubuntu-latest
-    needs: deploy-to-test
-    environment:
-      name: prod
-      url: https://pvaag3qdo22zu-prod.azurewebsites.net/
-    
-    steps:
-    - uses: actions/checkout@v3
-    
-    - name: 'Login via Azure CLI'
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-    - uses: azure/webapps-deploy@v2
-      with:
-        app-name: 'pvaag3qdo22zu-prod'
-        images: pvaag3qdo22zumpnpreg.azurecr.io/techboost/dotnetcoreapp:${{github.run_number}}
+ 
